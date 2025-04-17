@@ -1,4 +1,4 @@
-#função que irá adicionar receitas
+
 def adcreceitas():
     print("=============Adicionar Receitas============")
     receita = input("Digite o nome da receita: ")
@@ -6,7 +6,7 @@ def adcreceitas():
     datareceita = input("Digite a data da receita (dd/mm/aaaa): ")
     
     with open("receitas.txt", "a") as arquivo: 
-        #O arquivo irá armazenar a receita e o valor separados por vírgula
+
         arquivo.write(f"{receita},{valorreceita},{datareceita}\n")
         print("Receita cadastrada com sucesso!")
         
@@ -24,9 +24,19 @@ def calculartotalreceitas():
     except ValueError:
         pass
     return total
-        
 
-#função que adiciona despesas
+def armazenarreceitas():
+    receitas = []
+    try:
+        with open("receitas.txt", "r") as arquivo:
+            for linha in arquivo:
+                linha = linha.strip()
+                if linha:
+                    receitas.append(linha)
+    except FileNotFoundError:
+        print("Arquivo de receitas não encontrado.")
+    return receitas
+
 def adcdespesas():
     print("=============Adicionar Despesas============")
     despesa = input("Digite o nome da despesa: ")
@@ -34,7 +44,7 @@ def adcdespesas():
     datadespesa = input("Digite a data da despesa (dd/mm/aaaa): ")
     
     with open("despesas.txt", "a") as arquivo: 
-        #O arquivo irá armazenar a receita e o valor separados por vírgula
+
         arquivo.write(f"{despesa},{valordespesa},{datadespesa}\n")
         print("Despesa cadastrada com sucesso!")
         
@@ -54,3 +64,14 @@ def calculartotaldespesas():
         pass
     return total
 
+def armazenardespesas():
+    despesas = []
+    try:
+        with open("despesas.txt", "r") as arquivo:
+            for linha in arquivo:
+                linha = linha.strip()
+                if linha:
+                    despesas.append(linha)
+    except FileNotFoundError:
+        print("Arquivo de receitas não encontrado.")
+    return despesas

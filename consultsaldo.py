@@ -8,10 +8,12 @@ def saldoatual():
         totaldespesas = calculartotaldespesas()
         saldo = totalreceitas - totaldespesas
         
-        print("Seu saldo atual é: R$",saldo)
+        if not totaldespesas and not totalreceitas:
+            print("Nenhum saldo na conta.")
+        else:    
+            print("Seu saldo atual é: R$",saldo)
+            
         opcao = input("\nGostaria de voltar ao Menu Principal? (s/n): ")
-
-        
         if opcao == "s":
             break
         elif opcao == "n":
